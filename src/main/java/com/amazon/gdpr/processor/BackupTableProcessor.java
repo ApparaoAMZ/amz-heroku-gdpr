@@ -1,5 +1,6 @@
 package com.amazon.gdpr.processor;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -135,7 +136,7 @@ public class BackupTableProcessor {
 		String stTask = "";
 		String stUser = "";
 		String stAtt = "";
-
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
 		RunErrorMgmt runErrorMgmt = null;
 		try {
 			for (ImpactTableDetails impactTableDtls : lstImpactTableDetails) {
@@ -262,6 +263,7 @@ public class BackupTableProcessor {
 				String query = "CREATE TABLE GDPR.BKP_ATTACHMENT(" + stAtt + ");";
 				backupTableProcessorDaoImpl.alterBackupTable(query);
 			}
+			System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
 
 		} catch (Exception exception) {
 			System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + " :: "
