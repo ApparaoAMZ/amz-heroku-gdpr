@@ -239,7 +239,7 @@ public class BackupTableProcessor {
 			}
 			if (alterResponse) {
 				stResponse = StringUtils.chop(stResponse);
-				String query = "CREATE TABLE GDPR.BKP_RESPONSE__C" + stResponse + ";";
+				String query = "CREATE TABLE GDPR.BKP_RESPONSE__C(" + stResponse + ");";
 				backupTableProcessorDaoImpl.alterBackupTable(query);
 			}
 			if (alterResponseAns) {
