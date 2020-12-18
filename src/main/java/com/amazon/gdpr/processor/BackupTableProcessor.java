@@ -36,12 +36,12 @@ public class BackupTableProcessor {
 		String CURRENT_METHOD = "processBkpupTable";
 		Boolean bkpupTblProcessStatus = false;
 		RunErrorMgmt runErrorMgmt = null;
-		List<BackupTableDetails> lstBackupTableDetails = backupTableProcessorDaoImpl.fetchBackupTableDetails();
+		//List<BackupTableDetails> lstBackupTableDetails = backupTableProcessorDaoImpl.fetchBackupTableDetails();
 		List<ImpactTableDetails> lstImpactTableDetails = gdprInputDaoImpl.fetchImpactTableDetailsMap();
 
 		try {
 			if (refreshBackupTables(lstImpactTableDetails)) {
-				bkpupTblProcessStatus = bkpupTableCheck(lstBackupTableDetails, lstImpactTableDetails);
+				bkpupTblProcessStatus = bkpupTableCheck(lstImpactTableDetails);
 			}
 			if (!bkpupTblProcessStatus) {
 				// load ModuleMgmt
@@ -102,8 +102,7 @@ public class BackupTableProcessor {
 		return refreshBkpupTableStatus;
 	}
 
-	public Boolean bkpupTableCheck(List<BackupTableDetails> lstBackupTableDetails,
-			List<ImpactTableDetails> lstImpactTableDetails) throws GdprException {
+	public Boolean bkpupTableCheck(List<ImpactTableDetails> lstImpactTableDetails) throws GdprException {
 		String CURRENT_METHOD = "bkpupTableCheck";
 		Boolean bkpupTableCheckStatus = false;
 		String impactTableName = null;
@@ -136,7 +135,7 @@ public class BackupTableProcessor {
 		String stTask = "";
 		String stUser = "";
 		String stAtt = "";
-		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
+		//System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
 		RunErrorMgmt runErrorMgmt = null;
 		try {
 			for (ImpactTableDetails impactTableDtls : lstImpactTableDetails) {
@@ -263,7 +262,7 @@ public class BackupTableProcessor {
 				String query = "CREATE TABLE GDPR.BKP_ATTACHMENT(" + stAtt + ");";
 				backupTableProcessorDaoImpl.alterBackupTable(query);
 			}
-			System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
+			//System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
 
 		} catch (Exception exception) {
 			System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + " :: "
