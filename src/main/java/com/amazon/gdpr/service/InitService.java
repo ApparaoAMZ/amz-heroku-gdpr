@@ -108,13 +108,13 @@ public class InitService {
 		else {
 			initializationStatus[0] = GlobalConstants.STATUS_SUCCESS;
 			System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Backup Processor : "+LocalTime.now());
-			//String processBackupTableStatus = bkpupTableProcessor.processBkpupTable(runId);
+			String processBackupTableStatus = bkpupTableProcessor.processBkpupTable(runId);
 			System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: After Backup Processor : "+LocalTime.now());
 			System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: Before Summary Processor : "+LocalTime.now());
-			String summaryStatus = summaryDataProcessor.processSummaryData(runId);
+			//String summaryStatus = summaryDataProcessor.processSummaryData(runId);
 			System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: After Summary Processor : "+LocalTime.now());
 			initializationStatus[1] = GlobalConstants.RUN_ANONYMIZATION_INSERT + insertRunAnonymizationCounts 
-					+ GlobalConstants.SEMICOLON_STRING + summaryStatus + GlobalConstants.MSG_GDPR_PROCESSING;
+					+ GlobalConstants.SEMICOLON_STRING + "" + GlobalConstants.MSG_GDPR_PROCESSING;
 						
 		}
 		return initializationStatus;
