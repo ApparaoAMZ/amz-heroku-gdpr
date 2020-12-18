@@ -67,6 +67,7 @@ public class BackupTableProcessorDaoImpl {
 	 * @param list of lstBackupTableDetails
 	 * @return true or false
 	 */
+	
 	public Boolean refreshBackupTables(List<ImpactTableDetails> lstImpactTableDetails) {
 		String CURRENT_METHOD = "refreshBackupTables";
 		Boolean bkpupRefreshStatus = true;
@@ -90,7 +91,7 @@ public class BackupTableProcessorDaoImpl {
 
 				String truncateTableSQL = "DROP TABLE IF EXISTS " + lstBkpTables + ";";
 				//System.out.println("before truncate" + truncateTableSQL);
-				jdbcTemplate.execute(truncateTableSQL);
+				jdbcTemplate.update(truncateTableSQL);
 				//System.out.println("After truncate" + truncateTableSQL);
 				
 			}
