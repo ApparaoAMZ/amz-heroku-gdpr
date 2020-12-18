@@ -82,7 +82,7 @@ public class BackupTableProcessorDaoImpl {
 		 * System.out.println("Comma separated String: " + string); int backupTableLnth
 		 * = setBackupTables.size(); for (String backupTable : setBackupTables) {
 		 */
-		//System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: srart : "+LocalTime.now());
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: srart : "+LocalTime.now());
 
 		try {
 
@@ -100,7 +100,7 @@ public class BackupTableProcessorDaoImpl {
 			bkpupRefreshStatus = false;
 			e.printStackTrace();
 		}
-		//System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: end : "+LocalTime.now());
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: end : "+LocalTime.now());
 
 		// }
 		return bkpupRefreshStatus;
@@ -131,19 +131,19 @@ public class BackupTableProcessorDaoImpl {
 	 * 
 	 * @return List of BackupTable Names
 	 */
-	public Set getBackupTableList(List<ImpactTableDetails> lstImpactTableDetails) {
+	public Set<String> getBackupTableList(List<ImpactTableDetails> lstImpactTableDetails) {
 		String CURRENT_METHOD = "getBackupTableList";
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
-		Set lstBackupTables = new HashSet();
+		Set<String> setBackupTables = new HashSet<String>();
 		int backupTableLnth = lstImpactTableDetails.size();
 		for (int i = 0; i < backupTableLnth; i++) {
 			String backupTableName = lstImpactTableDetails.get(i).getImpactTableName();
 
-			lstBackupTables.add("GDPR.BKP_" + backupTableName);
+			setBackupTables.add("GDPR.BKP_" + backupTableName);
 
 		}
 
-		return lstBackupTables;
+		return setBackupTables;
 	}
 
 }
