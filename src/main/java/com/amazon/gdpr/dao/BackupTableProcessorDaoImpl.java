@@ -55,6 +55,7 @@ public class BackupTableProcessorDaoImpl {
 		String CURRENT_METHOD = "alterBackupTable";
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
 		jdbcTemplate.update(query);
+		System.out.println("query query:::" + query);
 	}
 
 	/**
