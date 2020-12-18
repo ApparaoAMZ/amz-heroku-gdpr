@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.amazon.gdpr.model.gdpr.input.ImpactTableDetails;
 import com.amazon.gdpr.model.gdpr.output.BackupTableDetails;
 import com.amazon.gdpr.util.GlobalConstants;
 import com.amazon.gdpr.util.SqlQueriesConstant;
@@ -64,12 +65,12 @@ public class BackupTableProcessorDaoImpl {
 	 * @param list of lstBackupTableDetails
 	 * @return true or false
 	 */
-	public Boolean refreshBackupTables(List<BackupTableDetails> lstBackupTableDetails) {
+	public Boolean refreshBackupTables(List<ImpactTableDetails> lstImpactTableDetails) {
 		String CURRENT_METHOD = "refreshBackupTables";
 		Boolean bkpupRefreshStatus = true;
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
 		Set<String> setBackupTables = new HashSet();
-		setBackupTables = getBackupTableList(lstBackupTableDetails);
+		setBackupTables = getBackupTableList(lstImpactTableDetails);
 		System.out.println("setBackupTables truncate" + setBackupTables);
 		// Convert the Set of String to String
 		String lstBkpTables = String.join(", ", setBackupTables);
@@ -84,7 +85,7 @@ public class BackupTableProcessorDaoImpl {
 
 			if (setBackupTables != null && !setBackupTables.isEmpty()) {
 
-				String truncateTableSQL = "DROP TABLE " + lstBkpTables + ";";
+				String truncateTableSQL = "DROP TABLE IF EXISTS " + lstBkpTables + ";";
 				System.out.println("before truncate" + truncateTableSQL);
 				jdbcTemplate.execute(truncateTableSQL);
 				System.out.println("After truncate" + truncateTableSQL);
@@ -126,13 +127,13 @@ public class BackupTableProcessorDaoImpl {
 	 * 
 	 * @return List of BackupTable Names
 	 */
-	public Set getBackupTableList(List<BackupTableDetails> lstBackupTableColumn) {
+	public Set getBackupTableList(List<ImpactTableDetails> lstImpactTableDetails) {
 		String CURRENT_METHOD = "getBackupTableList";
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
 		Set lstBackupTables = new HashSet();
-		int backupTableLnth = lstBackupTableColumn.size();
+		int backupTableLnth = lstImpactTableDetails.size();
 		for (int i = 0; i < backupTableLnth; i++) {
-			String backupTableName = lstBackupTableColumn.get(i).getBackupTableName();
+			String backupTableName = lstImpactTableDetails.get(i).getImpactTableName();
 
 			lstBackupTables.add("GDPR." + backupTableName);
 

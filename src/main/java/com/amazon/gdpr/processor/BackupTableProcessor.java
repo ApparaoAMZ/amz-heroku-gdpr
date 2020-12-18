@@ -39,7 +39,7 @@ public class BackupTableProcessor {
 		List<ImpactTableDetails> lstImpactTableDetails = gdprInputDaoImpl.fetchImpactTableDetailsMap();
 
 		try {
-			if (refreshBackupTables(lstBackupTableDetails)) {
+			if (refreshBackupTables(lstImpactTableDetails)) {
 				bkpupTblProcessStatus = bkpupTableCheck(lstBackupTableDetails, lstImpactTableDetails);
 			}
 			if (!bkpupTblProcessStatus) {
@@ -71,14 +71,14 @@ public class BackupTableProcessor {
 	/*
 	 * Refresh Backup Tables
 	 */
-	public Boolean refreshBackupTables(List<BackupTableDetails> lstBackupTableDetails) throws GdprException {
+	public Boolean refreshBackupTables(List<ImpactTableDetails> lstImpactTableDetails) throws GdprException {
 		String CURRENT_METHOD = "refreshBackupTables";
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
 		Boolean refreshBkpupTableStatus = false;
 		// Fetch the Backup Table name from ImpactTable and truncate the tables
 		RunErrorMgmt runErrorMgmt = null;
 		try {
-		refreshBkpupTableStatus = backupTableProcessorDaoImpl.refreshBackupTables(lstBackupTableDetails);
+		refreshBkpupTableStatus = backupTableProcessorDaoImpl.refreshBackupTables(lstImpactTableDetails);
 		} catch (Exception exception) {
 			System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + " :: "
 					+ GlobalConstants.ERR_RUN_BACKUP_TABLE_REFRESH);
