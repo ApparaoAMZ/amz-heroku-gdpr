@@ -53,6 +53,7 @@ public class BackupTableProcessorDaoImpl {
 	 * @param query
 	 * @return
 	 */
+	@Transactional
 	public void alterBackupTable(String query) {
 		String CURRENT_METHOD = "alterBackupTable";
 		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: srart : "+LocalTime.now());
@@ -67,7 +68,7 @@ public class BackupTableProcessorDaoImpl {
 	 * @param list of lstBackupTableDetails
 	 * @return true or false
 	 */
-	
+	@Transactional
 	public Boolean refreshBackupTables(List<ImpactTableDetails> lstImpactTableDetails) {
 		String CURRENT_METHOD = "refreshBackupTables";
 		Boolean bkpupRefreshStatus = true;
