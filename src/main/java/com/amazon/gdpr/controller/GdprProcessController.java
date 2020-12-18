@@ -67,7 +67,7 @@ public class GdprProcessController {
 		String initServiceStatus =  initService.initService(gdprInput.getRunName());
 		runId = initService.getRunId();	
 		//reOrganizeInputService.reOrganizeInputService(runId);
-		reOrganizeInputService.reOrganizeData(runId);
+		//reOrganizeInputService.reOrganizeData(runId);
 		gdprInput.setRunStatus(initServiceStatus);
 		model.addAttribute(GlobalConstants.ATTRIBUTE_GDPRINPUT, gdprInput);
 		return GlobalConstants.TEMPLATE_GDPRINPUT;
