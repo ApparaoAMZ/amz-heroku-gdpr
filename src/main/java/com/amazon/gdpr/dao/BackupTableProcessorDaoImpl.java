@@ -2,6 +2,7 @@ package com.amazon.gdpr.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,8 +55,9 @@ public class BackupTableProcessorDaoImpl {
 	 */
 	public void alterBackupTable(String query) {
 		String CURRENT_METHOD = "alterBackupTable";
-		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: srart : "+LocalTime.now());
 		jdbcTemplate.update(query);
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: end : "+LocalTime.now());
 		//System.out.println("query query:::" + query);
 	}
 
@@ -80,6 +82,7 @@ public class BackupTableProcessorDaoImpl {
 		 * System.out.println("Comma separated String: " + string); int backupTableLnth
 		 * = setBackupTables.size(); for (String backupTable : setBackupTables) {
 		 */
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: srart : "+LocalTime.now());
 
 		try {
 
@@ -97,6 +100,7 @@ public class BackupTableProcessorDaoImpl {
 			bkpupRefreshStatus = false;
 			e.printStackTrace();
 		}
+		System.out.println(CURRENT_CLASS+" ::: "+CURRENT_METHOD+" :: end : "+LocalTime.now());
 
 		// }
 		return bkpupRefreshStatus;
