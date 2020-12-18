@@ -56,7 +56,7 @@ public class BackupTableProcessorDaoImpl {
 		String CURRENT_METHOD = "alterBackupTable";
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
 		jdbcTemplate.update(query);
-		System.out.println("query query:::" + query);
+		//System.out.println("query query:::" + query);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class BackupTableProcessorDaoImpl {
 		System.out.println(CURRENT_CLASS + " ::: " + CURRENT_METHOD + ":: Inside method");
 		Set<String> setBackupTables = new HashSet();
 		setBackupTables = getBackupTableList(lstImpactTableDetails);
-		System.out.println("setBackupTables truncate" + setBackupTables);
+		//System.out.println("setBackupTables truncate" + setBackupTables);
 		// Convert the Set of String to String
 		String lstBkpTables = String.join(", ", setBackupTables);
 
@@ -86,9 +86,9 @@ public class BackupTableProcessorDaoImpl {
 			if (setBackupTables != null && !setBackupTables.isEmpty()) {
 
 				String truncateTableSQL = "DROP TABLE IF EXISTS " + lstBkpTables + ";";
-				System.out.println("before truncate" + truncateTableSQL);
+				//System.out.println("before truncate" + truncateTableSQL);
 				jdbcTemplate.execute(truncateTableSQL);
-				System.out.println("After truncate" + truncateTableSQL);
+				//System.out.println("After truncate" + truncateTableSQL);
 				
 			}
 			bkpupRefreshStatus = true;
