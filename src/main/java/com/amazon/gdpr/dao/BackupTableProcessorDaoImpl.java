@@ -135,7 +135,7 @@ public class BackupTableProcessorDaoImpl {
 		for (int i = 0; i < backupTableLnth; i++) {
 			String backupTableName = lstImpactTableDetails.get(i).getImpactTableName();
 
-			lstBackupTables.add("GDPR." + backupTableName);
+			lstBackupTables.add("GDPR.BKP_" + backupTableName);
 
 		}
 
