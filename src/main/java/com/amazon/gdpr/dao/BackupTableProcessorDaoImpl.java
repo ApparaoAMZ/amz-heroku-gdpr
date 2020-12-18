@@ -83,7 +83,7 @@ public class BackupTableProcessorDaoImpl {
 
 			if (setBackupTables != null && !setBackupTables.isEmpty()) {
 
-				String truncateTableSQL = "TRUNCATE TABLE " + lstBkpTables + ";";
+				String truncateTableSQL = "DROP TABLE " + lstBkpTables + ";";
 				System.out.println("before truncate" + truncateTableSQL);
 				jdbcTemplate.execute(truncateTableSQL);
 				System.out.println("After truncate" + truncateTableSQL);
